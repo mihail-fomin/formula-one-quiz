@@ -6,9 +6,27 @@ const maxVerstappen = 'https://ik.imagekit.io/i7lh9dcka/F1/tr:w-400/max.jpg?ik-s
 const champions = 'https://ik.imagekit.io/i7lh9dcka/F1/tr:w-400/Lewis-and-Michael.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1675084274601'
 
 const questionList = [
-	{ id: 0, question: 'Which year the first F1 race was held?', rightAnswer: '1950', picture: firstRace },
-	{ id: 1, question: 'What is the current F1 Champion\'s first name?', rightAnswer: 'Max', picture: maxVerstappen },
-	{ id: 2, question: 'How many F1 drivers managed to become a world champoin for 7 times?', rightAnswer: '2', picture: champions },
+	{
+		id: 0,
+		question: 'Which year the first F1 race was held?',
+		variants: ['1929', '1945', '1960', '1950'],
+		correct: 3,
+		picture: firstRace
+	},
+	{
+		id: 1,
+		question: 'Who is the current (march 2023) F1 Champion?',
+		variants: ['Lewis Hamilton', 'Max Verstappen', 'Fernando Alonso'],
+		correct: 1,
+		picture: maxVerstappen
+	},
+	{
+		id: 2,
+		question: 'How many F1 drivers managed to become a world champoin for 7 times?',
+		variants: ['0', '1', '2'],
+		correct: 2,
+		picture: champions
+	},
 ]
 
 async function sleep(ms) {
@@ -25,13 +43,15 @@ export default function App() {
 
 	return (
 		<>
-			<div className='mx-auto w-[300px] mt-4'>
-				<h1 className='my-4 text-xl'>Formula one quiz</h1>
-				{screenType === 'question'
-					? <QuestionScreen setScreenType={setScreenType} />
-					: <EndScreen setScreenType={setScreenType} />}
+			<div className='flex items-center justify-center h-screen'>
+				<div className='p-4 bg-white rounded-lg w-[600px]'>
+					<div>Progress bar</div>
+					<h1 className='my-4 text-xl'>Formula one quiz</h1>
+					{screenType === 'question'
+						? <QuestionScreen setScreenType={setScreenType} />
+						: <EndScreen setScreenType={setScreenType} />}
+				</div>
 			</div>
-
 		</>
 	)
 }
