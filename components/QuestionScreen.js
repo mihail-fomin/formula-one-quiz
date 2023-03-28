@@ -54,7 +54,7 @@ export default function QuestionScreen({ setScreenType, question }) {
 			<ul>
 				{question.variants.map((text) =>
 					<li
-						className='p-2 my-2 border-2 rounded-md cursor-pointer border-sky-300 hover:bg-slate-100'
+						className='p-2 my-2 border-2 border-purple-700 rounded-md cursor-pointer hover:bg-purple-100'
 						key={text}
 					>
 						{text}
