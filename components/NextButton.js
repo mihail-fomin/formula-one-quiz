@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { twMerge } from "tailwind-merge"
 
-export function SendButton({ disabled, children, onClick }) {
+export function NextButton({ disabled, children, onClick }) {
 	const commonCn = `
 		cursor-pointer
 		rounded

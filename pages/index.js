@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SendButton } from '../components/SendButton'
+import { SendButton } from '../components/NextButton'
 import EndScreen from '@/components/EndScreen'
 import QuestionScreen from '@/components/QuestionScreen'
 
