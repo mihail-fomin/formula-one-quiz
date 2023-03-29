@@ -16,10 +16,9 @@ function Item({ active, children, onClick }) {
 	)
 }
 
-export default function QuestionScreen({ setScreenType }) {
+export default function QuestionScreen({ step, setStep, setScreenType }) {
 	const [activeIndex, setActiveIndex] = React.useState();
 	const [status, setStatus] = React.useState('awaiting')
-	const [step, setStep] = React.useState(0)
 
 	const question = questionList[step];
 	let isLastQuestion = step === questionList.length - 1
@@ -29,15 +28,14 @@ export default function QuestionScreen({ setScreenType }) {
 		console.log(step, index);
 		setActiveIndex(index)
 		setStatus('chosen')
-		answers.push(index)
-		console.log(answers);
 	}
 
 	function onNextButtonClick() {
 		if (isLastQuestion) {
 			setScreenType('end')
 		} else {
-			setStep(index + 1);
+			setActiveIndex()
+			setStep(step + 1);
 			setStatus('awaiting')
 		}
 	}
@@ -53,7 +51,7 @@ export default function QuestionScreen({ setScreenType }) {
 			</div>
 			<NextButton
 				disabled={status === 'awaiting'}
-				onClick={status === 'success' ? onNextButtonClick : ''}>
+				onClick={() => onNextButtonClick()}>
 				{status === 'chosen' ? (isLastQuestion ? 'Show results' : 'Next question') : 'Next question'}
 			</NextButton>
 		</form>

@@ -42,7 +42,13 @@ async function sleep(ms) {
 
 export default function App() {
 	const [screenType, setScreenType] = React.useState('question')
+	const [step, setStep] = React.useState(0)
 
+	let isOver = screenType !== 'question'
+
+	function calcProgress() {
+		return Math.round(100 * step / questionList.length)
+	}
 
 	return (
 		<>
@@ -50,10 +56,10 @@ export default function App() {
 				<div className='p-4 bg-white rounded-lg w-[600px]'>
 					<h1 className='my-4 text-3xl font-bold'>Formula one quiz</h1>
 					<div className='h-4 bg-gray-300 rounded-full'>
-						<div style={{ width: '50%' }} className='w-4/5 h-full rounded-full bg-gradient-to-r from-purple-500 to-pink-500'></div>
+						<div style={isOver ? { width: `100%` } : { width: `${calcProgress()}%` }} className='w-full h-full transition-all rounded-full bg-gradient-to-r from-purple-500 to-pink-500'></div>
 					</div>
 					{screenType === 'question'
-						? <QuestionScreen setScreenType={setScreenType} />
+						? <QuestionScreen step={step} setStep={setStep} setScreenType={setScreenType} />
 						: <EndScreen setScreenType={setScreenType} />}
 				</div>
 			</div>
