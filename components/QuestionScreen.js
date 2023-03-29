@@ -16,7 +16,7 @@ function Item({ active, children, onClick }) {
 	)
 }
 
-export default function QuestionScreen({ step, setStep, setScreenType }) {
+export default function QuestionScreen({ step, setStep, setScreenType, setProgress }) {
 	const [activeIndex, setActiveIndex] = React.useState();
 	const [status, setStatus] = React.useState('awaiting')
 

@@ -43,6 +43,7 @@ async function sleep(ms) {
 export default function App() {
 	const [screenType, setScreenType] = React.useState('question')
 	const [step, setStep] = React.useState(0)
+	const [progress, setProgress] = React.useState(0)
 
 	let isOver = screenType !== 'question'
 
@@ -60,7 +61,7 @@ export default function App() {
 					</div>
 					{screenType === 'question'
 						? <QuestionScreen step={step} setStep={setStep} setScreenType={setScreenType} />
-						: <EndScreen setScreenType={setScreenType} />}
+						: <EndScreen setScreenType={setScreenType} setStep={setStep} />}
 				</div>
 			</div>
 		</>
