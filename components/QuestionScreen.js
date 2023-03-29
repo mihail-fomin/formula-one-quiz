@@ -16,54 +16,46 @@ function Item({ active, children, onClick }) {
 	)
 }
 
-export default function QuestionScreen({ setScreenType, question }) {
-	const [activeIndex, setActiveIndex] = React.useState(0);
+export default function QuestionScreen({ setScreenType }) {
+	const [activeIndex, setActiveIndex] = React.useState();
 	const [status, setStatus] = React.useState('awaiting')
-	const [index, setIndex] = React.useState(0)
+	const [step, setStep] = React.useState(0)
 
-	let isLastQuestion = index === questionList.length - 1
+	const question = questionList[step];
+	let isLastQuestion = step === questionList.length - 1
+	const answers = []
 
-
-	function onChooseVariant() {
-
+	function onChooseVariant(index) {
+		console.log(step, index);
+		setActiveIndex(index)
+		setStatus('chosen')
+		answers.push(index)
+		console.log(answers);
 	}
 
-	// function onNextButtonClick() {
-	// 	if (isLastQuestion) {
-	// 		setScreenType('end')
-	// 	} else {
-	// 		setIndex(index + 1);
-	// 		setStatus('awaiting')
-	// 	}
-	// }
+	function onNextButtonClick() {
+		if (isLastQuestion) {
+			setScreenType('end')
+		} else {
+			setStep(index + 1);
+			setStatus('awaiting')
+		}
+	}
 
 	return <>
-		<p>Question {index + 1} of {questionList.length}</p>
+		<p>Question {step + 1} of {questionList.length}</p>
 		<p className='my-2 text-lg font-bold'>{question.title}</p>
 		<form>
 			<div>
-				{question.variants.map((text, i) =>
-					<Item active={activeIndex == i} onClick={() => setActiveIndex(i)} > {text}</Item>
+				{question.variants.map((text, index) =>
+					<Item key={text} active={activeIndex == index} onClick={() => onChooseVariant(index)}>{text}</Item>
 				)}
 			</div>
 			<NextButton
 				disabled={status === 'awaiting'}
 				onClick={status === 'success' ? onNextButtonClick : ''}>
-				{status === 'success' ? (isLastQuestion ? 'Show results' : 'Next question') :
-					status === 'loading' ? 'Loading...' :
-						'Submit'}
+				{status === 'chosen' ? (isLastQuestion ? 'Show results' : 'Next question') : 'Next question'}
 			</NextButton>
-			{status === 'success' &&
-				<div className='relative'>
-					<p className='text-xl text-green-700'>
-						Quite right you are!!!
-					</p>
-					<img
-						src={item.picture}
-						alt='right answer picture'
-					/>
-				</div>
-			}
 		</form>
 	</>
 }

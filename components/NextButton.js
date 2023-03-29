@@ -7,8 +7,8 @@ export function NextButton({ disabled, children, onClick }) {
 		rounded
 		inline-block p-2 my-2
 		text-white
-	   bg-sky-600
-		hover:bg-sky-700
+	   bg-purple-600
+		hover:bg-purple-700
 		`
 	const disabledCn = disabled ? `
 		cursor-not-allowed

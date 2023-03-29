@@ -42,8 +42,7 @@ async function sleep(ms) {
 
 export default function App() {
 	const [screenType, setScreenType] = React.useState('question')
-	const [step, setStep] = React.useState(0)
-	const question = questionList[step];
+
 
 	return (
 		<>
@@ -54,7 +53,7 @@ export default function App() {
 						<div style={{ width: '50%' }} className='w-4/5 h-full rounded-full bg-gradient-to-r from-purple-500 to-pink-500'></div>
 					</div>
 					{screenType === 'question'
-						? <QuestionScreen question={question} setScreenType={setScreenType} />
+						? <QuestionScreen setScreenType={setScreenType} />
 						: <EndScreen setScreenType={setScreenType} />}
 				</div>
 			</div>
