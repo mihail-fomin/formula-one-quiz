@@ -29,6 +29,13 @@ export const questionList = [
 		correct: 2,
 		picture: champions
 	},
+	{
+		id: 3,
+		title: 'Choose the most titled F1 team',
+		variants: ['Mercedes', 'Ferrari', 'Red bull', 'McLaren'],
+		correct: 1,
+		picture: ''
+	},
 ]
 
 async function sleep(ms) {
@@ -43,7 +50,7 @@ async function sleep(ms) {
 export default function App() {
 	const [screenType, setScreenType] = React.useState('question')
 	const [step, setStep] = React.useState(0)
-	const [progress, setProgress] = React.useState(0)
+	const [answers, setAnswers] = React.useState([])
 
 	let isOver = screenType !== 'question'
 
@@ -60,8 +67,19 @@ export default function App() {
 						<div style={isOver ? { width: `100%` } : { width: `${calcProgress()}%` }} className='w-full h-full transition-all rounded-full bg-gradient-to-r from-purple-500 to-pink-500'></div>
 					</div>
 					{screenType === 'question'
-						? <QuestionScreen step={step} setStep={setStep} setScreenType={setScreenType} />
-						: <EndScreen setScreenType={setScreenType} setStep={setStep} />}
+						? <QuestionScreen
+							step={step}
+							setStep={setStep}
+							setScreenType={setScreenType}
+							answers={answers}
+							setAnswers={setAnswers}
+						/>
+						: <EndScreen
+							setScreenType={setScreenType}
+							setStep={setStep}
+							answers={answers}
+							setAnswers={setAnswers}
+						/>}
 				</div>
 			</div>
 		</>

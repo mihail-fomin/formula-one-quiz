@@ -16,21 +16,23 @@ function Item({ active, children, onClick }) {
 	)
 }
 
-export default function QuestionScreen({ step, setStep, setScreenType, setProgress }) {
+export default function QuestionScreen({ step, setStep, setScreenType, answers, setAnswers }) {
 	const [activeIndex, setActiveIndex] = React.useState();
 	const [status, setStatus] = React.useState('awaiting')
 
 	const question = questionList[step];
 	let isLastQuestion = step === questionList.length - 1
-	const answers = []
+
 
 	function onChooseVariant(index) {
-		console.log(step, index);
 		setActiveIndex(index)
 		setStatus('chosen')
 	}
 
 	function onNextButtonClick() {
+		answers.push([step, activeIndex == question.correct])
+		setAnswers(answers)
+
 		if (isLastQuestion) {
 			setScreenType('end')
 		} else {
@@ -39,6 +41,8 @@ export default function QuestionScreen({ step, setStep, setScreenType, setProgre
 			setStatus('awaiting')
 		}
 	}
+
+
 
 	return <>
 		<p>Question {step + 1} of {questionList.length}</p>
