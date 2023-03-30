@@ -1,3 +1,5 @@
+import { NextButton } from "./NextButton";
+
 export default function EndScreen({ setScreenType, setStep, answers, setAnswers }) {
 
 	function onStartAgainClick() {
@@ -17,12 +19,12 @@ export default function EndScreen({ setScreenType, setStep, answers, setAnswers 
 	return <>
 		<h2 className="my-2 text-xl">Congratulations! You have finished the quiz!</h2>
 		<div className="mb-4 text-xl">
-			You have just given {calcCorrectAnswers()} of {answers.length} correct answers!
+			You have just given <span className="font-bold">{calcCorrectAnswers()}</span> of
+			<span className="font-bold"> {answers.length}</span> correct answers!
 		</div>
-		<button
-			className='block p-2 m-2 text-white rounded cursor-pointer bg-sky-600 hover:bg-sky-700'
+		<NextButton
 			onClick={() => onStartAgainClick()}>
 			Start again?
-		</button>
+		</NextButton>
 	</>
 }

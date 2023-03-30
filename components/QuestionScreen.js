@@ -43,7 +43,6 @@ export default function QuestionScreen({ step, setStep, setScreenType, answers, 
 	}
 
 
-
 	return <>
 		<p>Question {step + 1} of {questionList.length}</p>
 		<p className='my-2 text-lg font-bold'>{question.title}</p>

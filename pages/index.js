@@ -60,11 +60,11 @@ export default function App() {
 
 	return (
 		<>
-			<div className='flex items-center justify-center h-screen'>
+			<div className='flex justify-center translate-y-64 '>
 				<div className='p-4 bg-white rounded-lg w-[600px]'>
 					<h1 className='my-4 text-3xl font-bold'>Formula one quiz</h1>
 					<div className='h-4 bg-gray-300 rounded-full'>
-						<div style={isOver ? { width: `100%` } : { width: `${calcProgress()}%` }} className='w-full h-full transition-all rounded-full bg-gradient-to-r from-purple-500 to-pink-500'></div>
+						<div style={isOver ? { width: `100%` } : { width: `${calcProgress()}%` }} className='w-full h-full transition-all delay-150 rounded-full duration-350 bg-gradient-to-r from-purple-500 to-pink-500'></div>
 					</div>
 					{screenType === 'question'
 						? <QuestionScreen
