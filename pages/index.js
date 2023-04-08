@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { SendButton } from '../components/NextButton'
 import EndScreen from '@/components/EndScreen'
 import QuestionScreen from '@/components/QuestionScreen'
 
@@ -38,15 +37,6 @@ export const questionList = [
 	},
 ]
 
-async function sleep(ms) {
-	return new Promise((resolve) => {
-		setTimeout(() => {
-			resolve();
-		}, ms);
-	})
-}
-
-
 export default function App() {
 	const [screenType, setScreenType] = React.useState('question')
 	const [step, setStep] = React.useState(0)
@@ -61,7 +51,7 @@ export default function App() {
 	return (
 		<>
 			<div className='flex justify-center translate-y-64 '>
-				<div className='p-4 bg-white rounded-lg w-[600px]'>
+				<div className='p-4 bg-white rounded-lg w-[600px] '>
 					<h1 className='my-4 text-3xl font-bold'>Formula one quiz</h1>
 					<div className='h-4 bg-gray-300 rounded-full'>
 						<div style={isOver ? { width: `100%` } : { width: `${calcProgress()}%` }} className='w-full h-full transition-all delay-150 rounded-full duration-350 bg-gradient-to-r from-purple-500 to-pink-500'></div>
